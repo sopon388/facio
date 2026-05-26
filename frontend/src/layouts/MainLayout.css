@@ -1,0 +1,28 @@
+.layout {
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.layout-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 25px 15px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .layout-content {
+    padding: 15px 10px;
+  }
+}
