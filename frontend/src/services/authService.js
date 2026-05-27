@@ -1,5 +1,7 @@
 import API from "../api/axios";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 
 // =========================
 // REGISTER USER
@@ -9,7 +11,7 @@ export const registerUser =
 
     const { data } =
       await API.post(
-        "/auth/register",
+        `${BASE_URL}/api/auth/register`,
         userData
       );
 
@@ -25,7 +27,7 @@ export const loginUser =
 
     const { data } =
       await API.post(
-        "/auth/login",
+        `${BASE_URL}/api/auth/login`,
         userData
       );
 
@@ -41,7 +43,7 @@ export const getProfile =
 
     const { data } =
       await API.get(
-        "/auth/me"
+        `${BASE_URL}/api/auth/me`
       );
 
     return data;
