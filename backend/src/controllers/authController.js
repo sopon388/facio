@@ -10,17 +10,23 @@ exports.register = async (req, res) => {
 
   try {
 
+    console.log("STEP 1");
+
     const {
       name,
       email,
       password
     } = req.body;
 
+    console.log("STEP 2");
+
 
     // Check User Exists
     const userExists = await User.findOne({
       email
     });
+
+    console.log("STEP 3");
 
     if (userExists) {
 
@@ -30,6 +36,8 @@ exports.register = async (req, res) => {
       });
     }
 
+    console.log("STEP 4");
+
 
     // Create User
     const user = await User.create({
@@ -37,6 +45,8 @@ exports.register = async (req, res) => {
       email,
       password
     });
+
+    console.log("STEP 5");
 
 
     // Response
@@ -52,7 +62,12 @@ exports.register = async (req, res) => {
       token: generateToken(user._id)
     });
 
+    console.log("STEP 6");
+
   } catch (error) {
+
+    console.log("REGISTER ERROR:");
+    console.log(error);
 
     res.status(500).json({
       success: false,
@@ -109,6 +124,9 @@ exports.login = async (req, res) => {
 
   } catch (error) {
 
+    console.log("LOGIN ERROR:");
+    console.log(error);
+
     res.status(500).json({
       success: false,
       message: error.message
@@ -135,6 +153,9 @@ exports.getProfile = async (req, res) => {
     });
 
   } catch (error) {
+
+    console.log("PROFILE ERROR:");
+    console.log(error);
 
     res.status(500).json({
       success: false,
