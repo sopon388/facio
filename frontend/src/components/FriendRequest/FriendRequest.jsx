@@ -2,161 +2,155 @@ import { useEffect, useState } from "react";
 
 import API from "../../api/axios";
 
-import "./FriendRequest.css";
+import MainLayout from "../../layouts/MainLayout";
 
-const FriendRequest = () => {
+import FriendRequest from "../../components/FriendRequest/FriendRequest";
 
-  const [requests, setRequests] =
+import "./Friends.css";
+
+const Friends = () => {
+
+  const [users, setUsers] =
     useState([]);
 
-  const [loading, setLoading] =
-    useState(true);
+  const [sentRequests, setSentRequests] =
+    useState([]);
 
   // =========================
-  // GET FRIEND REQUESTS
+  // GET ALL USERS
   // =========================
-  const fetchRequests = async () => {
+  const fetchUsers = async () => {
 
     try {
 
-      const { data } = await API.get(
-        "/friends/requests"
-      );
+      const { data } =
+        await API.get(
+          "/friends/users"
+        );
 
-      console.log(
-        "REQUEST DATA:",
-        data
-      );
-
-      setRequests(data.requests);
+      setUsers(data.users);
 
     } catch (error) {
 
-      console.log(
-        "REQUEST ERROR:",
-        error.response?.data || error
-      );
-
-    } finally {
-
-      setLoading(false);
+      console.log(error);
     }
   };
 
   // =========================
-  // ACCEPT REQUEST
+  // SEND REQUEST
   // =========================
-  const acceptRequest = async (id) => {
+  const sendRequest = async (
+    userId
+  ) => {
 
     try {
 
-      await API.put(
-        `/friends/accept/${id}`
+      await API.post(
+        `/friends/send/${userId}`
       );
 
-      setRequests((prev) =>
-        prev.filter(
-          (request) =>
-            request._id !== id
-        )
+      setSentRequests(
+        (prev) => [
+          ...prev,
+          userId
+        ]
       );
 
     } catch (error) {
 
-      console.log(
-        "ACCEPT ERROR:",
-        error.response?.data || error
-      );
+      console.log(error);
     }
   };
 
-  // =========================
-  // LOAD REQUESTS
-  // =========================
   useEffect(() => {
 
-    fetchRequests();
+    fetchUsers();
 
   }, []);
 
-  if (loading) {
-
-    return (
-      <div className="friend-loading">
-        Loading...
-      </div>
-    );
-  }
-
   return (
 
-    <div className="friend-request-container">
+    <MainLayout>
 
-      <h2>
-        Friend Requests
-      </h2>
+      <div className="friends-page">
 
-      <p>
-        Total Requests:
-        {requests.length}
-      </p>
+        {/* FRIEND REQUESTS */}
 
-      {requests.length === 0 ? (
+        <FriendRequest />
 
-        <div className="no-requests">
+        {/* ALL USERS */}
 
-          No Friend Requests
+        <div className="all-users">
 
-        </div>
+          <h2>
+            All Users
+          </h2>
 
-      ) : (
+          {users.map((user) => (
 
-        requests.map((request) => (
+            <div
+              className="user-card"
+              key={user._id}
+            >
 
-          <div
-            className="friend-card"
-            key={request._id}
-          >
+              <div className="user-info">
 
-            <div className="friend-info">
+                <img
+                  src={
+                    user.profilePic ||
+                    "https://via.placeholder.com/50"
+                  }
+                  alt="profile"
+                />
 
-              <img
-                src={
-                  request.sender?.profilePic ||
-                  "https://via.placeholder.com/50"
-                }
-                alt="profile"
-              />
+                <div>
 
-              <div>
+                  <h4>
+                    {user.name}
+                  </h4>
 
-                <h4>
-                  {request.sender?.name}
-                </h4>
+                  <p>
+                    {user.email}
+                  </p>
 
-                <p>
-                  Sent you a friend request
-                </p>
+                </div>
 
               </div>
 
+              {sentRequests.includes(
+                user._id
+              ) ? (
+
+                <button
+                  className="sent-btn"
+                >
+                  Request Sent
+                </button>
+
+              ) : (
+
+                <button
+                  onClick={() =>
+                    sendRequest(
+                      user._id
+                    )
+                  }
+                >
+                  Add Friend
+                </button>
+
+              )}
+
             </div>
 
-            <button
-              onClick={() =>
-                acceptRequest(request._id)
-              }
-            >
-              Accept
-            </button>
+          ))}
 
-          </div>
+        </div>
 
-        ))
-      )}
+      </div>
 
-    </div>
+    </MainLayout>
   );
 };
 
-export default FriendRequest;
+export default Friends;

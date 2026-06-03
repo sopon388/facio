@@ -1,166 +1,73 @@
-.friend-request-container {
+.friends-page {
   width: 100%;
   max-width: 500px;
-
-  margin: 20px auto;
-
-  padding: 20px;
-
-  background: #ffffff;
-
-  border-radius: 20px;
-
-  box-shadow:
-    0 4px 20px rgba(0,0,0,0.08);
+  margin: auto;
+  padding: 15px;
 }
 
-.friend-request-container h2 {
-  text-align: center;
-
-  margin-bottom: 15px;
-
-  color: #1e293b;
-
-  font-size: 26px;
+.all-users {
+  margin-top: 20px;
 }
 
-.friend-request-container p {
-  text-align: center;
-
-  color: #64748b;
-
+.all-users h2 {
   margin-bottom: 15px;
 }
 
-.friend-loading {
-  text-align: center;
+.user-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  font-size: 18px;
+  padding: 12px;
 
-  margin-top: 50px;
-}
-
-.no-requests {
-  text-align: center;
-
-  padding: 25px;
-
-  color: #64748b;
-
-  background: #f8fafc;
+  background: white;
 
   border-radius: 12px;
-}
 
-.friend-card {
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  padding: 15px;
-
-  margin-top: 12px;
-
-  border-radius: 15px;
-
-  background: #f8fafc;
-
-  transition: 0.3s;
-}
-
-.friend-card:hover {
-  transform: translateY(-2px);
+  margin-bottom: 10px;
 
   box-shadow:
-    0 4px 15px rgba(0,0,0,0.08);
+    0 2px 10px rgba(0,0,0,0.08);
 }
 
-.friend-info {
+.user-info {
   display: flex;
-
   align-items: center;
-
-  gap: 12px;
+  gap: 10px;
 }
 
-.friend-info img {
+.user-info img {
   width: 55px;
-
   height: 55px;
 
   border-radius: 50%;
-
   object-fit: cover;
-
-  border: 2px solid #2563eb;
 }
 
-.friend-info h4 {
-  color: #0f172a;
-
-  margin-bottom: 4px;
-
-  font-size: 16px;
-}
-
-.friend-info p {
+.user-info h4 {
   margin: 0;
-
-  font-size: 13px;
-
-  color: #64748b;
-
-  text-align: left;
 }
 
-.friend-card button {
+.user-info p {
+  margin: 0;
+  color: gray;
+  font-size: 13px;
+}
+
+.user-card button {
   border: none;
 
   background: #2563eb;
 
   color: white;
 
-  padding: 10px 18px;
+  padding: 8px 14px;
 
-  border-radius: 10px;
+  border-radius: 8px;
 
   cursor: pointer;
-
-  font-weight: 600;
-
-  transition: 0.3s;
 }
 
-.friend-card button:hover {
-  background: #1d4ed8;
-}
-
-@media (max-width: 600px) {
-
-  .friend-request-container {
-    margin: 10px;
-    padding: 15px;
-  }
-
-  .friend-card {
-    flex-direction: column;
-
-    gap: 12px;
-
-    text-align: center;
-  }
-
-  .friend-info {
-    flex-direction: column;
-  }
-
-  .friend-info p {
-    text-align: center;
-  }
-
-  .friend-card button {
-    width: 100%;
-  }
+.sent-btn {
+  background: gray !important;
 }
