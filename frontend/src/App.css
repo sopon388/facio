@@ -1,0 +1,16 @@
+body{
+  margin:0;
+  background:#dfe3ee;
+}
+
+#root{
+  max-width:500px;
+  min-height:100vh;
+
+  margin:0 auto;
+
+  background:white;
+
+  box-shadow:
+    0 0 25px rgba(0,0,0,0.12);
+}

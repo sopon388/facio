@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 
 import Navbar from "../../components/Navbar/Navbar";
-
 import CreatePost from "../../components/CreatePost/CreatePost";
-
 import PostCard from "../../components/PostCard/PostCard";
 
 import { getPosts } from "../../services/postService";
 
 import "./Home.css";
-
 
 const Home = () => {
 
@@ -19,10 +16,6 @@ const Home = () => {
   const [loading, setLoading] =
     useState(true);
 
-
-  // =========================
-  // FETCH POSTS
-  // =========================
   const fetchPosts = async () => {
 
     try {
@@ -42,41 +35,41 @@ const Home = () => {
     }
   };
 
-
-  // =========================
-  // LOAD POSTS
-  // =========================
   useEffect(() => {
 
-    const loadPosts = async () => {
-
-      await fetchPosts();
-    };
-
-    loadPosts();
+    fetchPosts();
 
   }, []);
 
-
   return (
 
-    <div>
+    <div className="home-page">
 
       <Navbar />
 
+      <div className="mobile-container">
 
-      <div className="home-container">
+        <div className="feed-header">
+
+          <h2>
+            News Feed
+          </h2>
+
+          <span>
+            {posts.length} Posts
+          </span>
+
+        </div>
 
         <CreatePost
           refreshPosts={fetchPosts}
         />
 
-
         {loading ? (
 
-          <p>
+          <div className="loading">
             Loading...
-          </p>
+          </div>
 
         ) : posts.length > 0 ? (
 
@@ -91,11 +84,11 @@ const Home = () => {
 
         ) : (
 
-          <p className="no-posts">
+          <div className="empty-feed">
 
             No Posts Found
 
-          </p>
+          </div>
 
         )}
 
@@ -105,4 +98,4 @@ const Home = () => {
   );
 };
 
-export default Home; 
+export default Home;

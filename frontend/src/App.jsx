@@ -19,6 +19,7 @@ import Profile from "./pages/Profile/Profile";
 import NotFound from "./pages/NotFound/NotFound";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
+import "./App.css";
 
 
 function App() {
