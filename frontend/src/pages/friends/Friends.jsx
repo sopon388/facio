@@ -4,6 +4,8 @@ import MainLayout from "../../layouts/MainLayout";
 
 import API from "../../api/axios";
 
+import FriendRequest from "../../components/FriendRequest/FriendRequest";
+
 import "./Friends.css";
 
 const Friends = () => {
@@ -11,6 +13,12 @@ const Friends = () => {
   const [users, setUsers] =
     useState([]);
 
+  const [sentRequests, setSentRequests] =
+    useState([]);
+
+  // =========================
+  // GET ALL USERS
+  // =========================
   const fetchUsers = async () => {
 
     try {
@@ -28,6 +36,9 @@ const Friends = () => {
     }
   };
 
+  // =========================
+  // SEND FRIEND REQUEST
+  // =========================
   const handleAddFriend =
     async (userId) => {
 
@@ -37,8 +48,11 @@ const Friends = () => {
           `/friends/send/${userId}`
         );
 
-        alert(
-          "Friend Request Sent"
+        setSentRequests(
+          (prev) => [
+            ...prev,
+            userId
+          ]
         );
 
       } catch (error) {
@@ -59,41 +73,78 @@ const Friends = () => {
 
       <div className="friends-page">
 
-        {users.map((user) => (
+        {/* FRIEND REQUESTS */}
 
-          <div
-            className="friend-card"
-            key={user._id}
-          >
+        <FriendRequest />
 
-            <div className="friend-info">
+        {/* ALL USERS */}
 
-              <img
-                src={
-                  user.profilePic
-                }
-                alt="profile"
-              />
+        <div className="all-users">
 
-              <h3>
-                {user.name}
-              </h3>
+          <h2>
+            All Users
+          </h2>
+
+          {users.map((user) => (
+
+            <div
+              className="friend-card"
+              key={user._id}
+            >
+
+              <div className="friend-info">
+
+                <img
+                  src={
+                    user.profilePic ||
+                    "https://via.placeholder.com/50"
+                  }
+                  alt="profile"
+                />
+
+                <div>
+
+                  <h3>
+                    {user.name}
+                  </h3>
+
+                  <p>
+                    {user.email}
+                  </p>
+
+                </div>
+
+              </div>
+
+              {sentRequests.includes(
+                user._id
+              ) ? (
+
+                <button
+                  className="sent-btn"
+                >
+                  Request Sent
+                </button>
+
+              ) : (
+
+                <button
+                  onClick={() =>
+                    handleAddFriend(
+                      user._id
+                    )
+                  }
+                >
+                  Add Friend
+                </button>
+
+              )}
 
             </div>
 
-            <button
-              onClick={() =>
-                handleAddFriend(
-                  user._id
-                )
-              }
-            >
-              Add Friend
-            </button>
+          ))}
 
-          </div>
-
-        ))}
+        </div>
 
       </div>
 
