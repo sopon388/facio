@@ -7,7 +7,7 @@ import API from "../../api/axios";
 
 import "./ChatBox.css";
 
-import socket from "../../socket";
+import socket from "../../socket/socket";
 
 const ChatBox = ({
   currentUser,
