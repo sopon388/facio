@@ -2,8 +2,10 @@
   display: flex;
   gap: 20px;
   padding: 20px;
-}
 
+  max-width: 1200px;
+  margin: auto;
+}
 
 /* SIDEBAR */
 .messages-sidebar {
@@ -12,12 +14,14 @@
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 20px;
+
+  min-height: 600px;
 }
 
 .messages-sidebar h2 {
   margin-bottom: 20px;
+  color: #111827;
 }
-
 
 /* USER CARD */
 .message-user-card {
@@ -26,45 +30,71 @@
   align-items: center;
 
   padding: 15px;
-  border: 1px solid #eee;
 
+  border: 1px solid #eee;
   border-radius: 10px;
+
   margin-bottom: 15px;
+
+  gap: 10px;
 }
 
 .message-user-left {
   display: flex;
   align-items: center;
   gap: 15px;
+
+  flex: 1;
+  min-width: 0;
 }
 
 .message-user-left img {
   width: 55px;
   height: 55px;
+
   border-radius: 50%;
   object-fit: cover;
+
+  flex-shrink: 0;
 }
 
 .message-user-left h3 {
   margin-bottom: 5px;
+  color: #111827;
 }
 
 .message-user-left p {
   color: gray;
   font-size: 14px;
-}
 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /* BUTTON */
 .message-user-card button {
   border: none;
+
   padding: 10px 16px;
+
   background: #111827;
   color: white;
+
   border-radius: 8px;
+
   cursor: pointer;
+
+  flex-shrink: 0;
+
+  white-space: nowrap;
+
+  transition: 0.3s;
 }
 
+.message-user-card button:hover {
+  background: #2563eb;
+}
 
 /* CHATBOX */
 .messages-chatbox {
@@ -73,6 +103,7 @@
 
 .no-chat {
   height: 600px;
+
   background: white;
 
   border: 1px solid #ddd;
@@ -84,4 +115,24 @@
 
   font-size: 20px;
   color: gray;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .messages-page {
+    flex-direction: column;
+  }
+
+  .messages-sidebar {
+    width: 100%;
+  }
+
+  .messages-chatbox {
+    width: 100%;
+  }
+
+  .message-user-card {
+    flex-direction: row;
+  }
 }
