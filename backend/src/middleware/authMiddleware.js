@@ -10,6 +10,10 @@ const protect = async (req, res, next) => {
         message: "No token"
       });
     }
+    console.log(
+  "AUTH HEADER:",
+  req.headers.authorization
+);
 
     const decoded = jwt.verify(
       token.split(" ")[1],

@@ -133,9 +133,6 @@ exports.login = async (req, res) => {
     });
   }
 };
-
-
-
 // ==============================
 // GET PROFILE
 // ==============================
@@ -143,9 +140,27 @@ exports.getProfile = async (req, res) => {
 
   try {
 
+    console.log(
+      "GET PROFILE USER:",
+      req.user
+    );
+
+    if (!req.user) {
+
+      return res.status(401).json({
+        success: false,
+        message: "User not found in token"
+      });
+    }
+
     const user = await User.findById(
       req.user._id
     ).select("-password");
+
+    console.log(
+      "FOUND USER:",
+      user
+    );
 
     res.status(200).json({
       success: true,
