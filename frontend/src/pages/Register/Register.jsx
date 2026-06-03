@@ -1,163 +1,94 @@
 import { useState } from "react";
-
-import { Link, useNavigate } from "react-router-dom";
-
-import { registerUser } from "../../services/authService";
-
-import "./Register.css";
+import { useNavigate } from "react-router-dom";
+import API from "../../api/axios";
 
 const Register = () => {
-
   const navigate = useNavigate();
 
-  const [formData, setFormData] =
-    useState({
-      name: "",
-      email: "",
-      password: ""
-    });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
-  const [loading, setLoading] =
-    useState(false);
-
-  const [error, setError] =
-    useState("");
-
-
-  // =========================
-  // HANDLE INPUT CHANGE
-  // =========================
-  const handleChange = (e) => {
-
-    setFormData({
-      ...formData,
-
-      [e.target.name]:
-        e.target.value
-    });
-  };
-
-
-  // =========================
-  // HANDLE SUBMIT
-  // =========================
-  const handleSubmit = async (e) => {
-
+  const submitHandler = async (e) => {
     e.preventDefault();
 
-    setError("");
-
     try {
-
-      setLoading(true);
-
-      const data =
-        await registerUser(formData);
-
-
-      // SAVE TOKEN
-      localStorage.setItem(
-        "token",
-        data.token
+      const { data } = await API.post(
+        "/auth/register",
+        {
+          name,
+          email,
+          password,
+        }
       );
 
+      if (data.token) {
+        localStorage.setItem(
+          "token",
+          data.token
+        );
+      }
 
-      // REDIRECT
-      navigate("/");
+      setMessage(
+        "Registration Successful!"
+      );
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
 
     } catch (error) {
-
-      setError(
+      setMessage(
         error.response?.data?.message ||
         "Registration Failed"
       );
-
-    } finally {
-
-      setLoading(false);
     }
   };
 
-
   return (
+    <div className="register-container">
+      <h2>Register</h2>
 
-    <div className="register-page">
-
-      <form
-        className="register-form"
-        onSubmit={handleSubmit}
-      >
-
-        <h2>
-          Create Account
-        </h2>
-
-
-        {error && (
-
-          <div className="error-message">
-
-            {error}
-
-          </div>
-
-        )}
-
-
+      <form onSubmit={submitHandler}>
         <input
           type="text"
-          placeholder="Full Name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
+          placeholder="Name"
+          value={name}
+          onChange={(e) =>
+            setName(e.target.value)
+          }
           required
         />
-
 
         <input
           type="email"
-          placeholder="Email Address"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
+          placeholder="Email"
+          value={email}
+          onChange={(e) =>
+            setEmail(e.target.value)
+          }
           required
         />
-
 
         <input
           type="password"
           placeholder="Password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
+          value={password}
+          onChange={(e) =>
+            setPassword(e.target.value)
+          }
           required
         />
 
-
-        <button
-          type="submit"
-          disabled={loading}
-        >
-
-          {loading
-            ? "Creating..."
-            : "Register"}
-
+        <button type="submit">
+          Register
         </button>
-
-
-        <p>
-
-          Already have an account?
-
-          <Link to="/login">
-            Login
-          </Link>
-
-        </p>
-
       </form>
 
+      {message && (
+        <p>{message}</p>
+      )}
     </div>
   );
 };
