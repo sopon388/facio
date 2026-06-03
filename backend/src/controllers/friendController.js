@@ -228,5 +228,41 @@ module.exports = {
 
   getFriendRequests,
 
-  acceptFriendRequest
+  acceptFriendRequest,
+  getFriends
+};
+// =========================
+// GET FRIENDS
+// =========================
+const getFriends = async (
+  req,
+  res
+) => {
+
+  try {
+
+    const user =
+      await User.findById(
+        req.user._id
+      ).populate(
+        "friends",
+        "name profilePic email"
+      );
+
+    res.status(200).json({
+
+      success: true,
+
+      friends:
+        user.friends
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+
+      message:
+        error.message
+    });
+  }
 };

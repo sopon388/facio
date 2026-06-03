@@ -8,7 +8,8 @@ const {
   sendFriendRequest,
   getFriendRequests,
   acceptFriendRequest,
-  getAllUsers
+  getAllUsers,
+  getFriends
 } = require(
   "../controllers/friendController"
 );
@@ -25,7 +26,11 @@ router.get(
   protect,
   getAllUsers
 );
-
+router.get(
+  "/my-friends",
+  protect,
+  getFriends
+);
 
 // SEND REQUEST
 router.post(
