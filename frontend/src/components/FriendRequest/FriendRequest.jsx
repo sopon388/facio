@@ -6,7 +6,7 @@ import MainLayout from "../../layouts/MainLayout";
 
 import FriendRequest from "../../components/FriendRequest/FriendRequest";
 
-import "./Friends.css";
+import "./FriendRequest.css";
 
 const Friends = () => {
 
