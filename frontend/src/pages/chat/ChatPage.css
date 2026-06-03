@@ -1,0 +1,42 @@
+.chat-page {
+  max-width: 900px;
+
+  margin: 20px auto;
+
+  padding: 0 15px;
+}
+
+.chat-page .chatbox {
+  height: calc(100vh - 120px);
+
+  background: white;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .chat-page {
+
+    margin: 10px auto;
+
+    padding: 0;
+  }
+
+  .chat-page .chatbox {
+
+    height: calc(100vh - 70px);
+
+    border-radius: 0;
+
+    box-shadow: none;
+  }
+
+}

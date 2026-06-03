@@ -19,6 +19,7 @@ import Profile from "./pages/Profile/Profile";
 import NotFound from "./pages/NotFound/NotFound";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
+import ChatPage from "./pages/chat/ChatPage";
 import "./App.css";
 
 
@@ -66,6 +67,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+  path="/chat/:id"
+  element={
+    <ProtectedRoute>
+      <ChatPage />
+    </ProtectedRoute>
+  }
+/>
 
         <Route
           path="/profile"

@@ -3,11 +3,13 @@ import {
   useState
 } from "react";
 
+import {
+  useNavigate
+} from "react-router-dom";
+
 import API from "../../api/axios";
 
 import Navbar from "../../components/Navbar/Navbar";
-
-import ChatBox from "../../components/ChatBox/ChatBox";
 
 import "./Messages.css";
 
@@ -16,34 +18,8 @@ const Messages = () => {
   const [users, setUsers] =
     useState([]);
 
-  const [selectedUser, setSelectedUser] =
-    useState(null);
-
-  const [currentUser, setCurrentUser] =
-    useState(null);
-
-  // =========================
-  // GET CURRENT USER
-  // =========================
-  const fetchCurrentUser =
-    async () => {
-
-      try {
-
-        const { data } =
-          await API.get(
-            "/auth/me"
-          );
-
-        setCurrentUser(
-          data.user
-        );
-
-      } catch (error) {
-
-        console.log(error);
-      }
-    };
+  const navigate =
+    useNavigate();
 
   // =========================
   // GET FRIENDS ONLY
@@ -73,15 +49,7 @@ const Messages = () => {
   // =========================
   useEffect(() => {
 
-    const loadData =
-      async () => {
-
-        await fetchCurrentUser();
-
-        await fetchUsers();
-      };
-
-    loadData();
+    fetchUsers();
 
   }, []);
 
@@ -124,18 +92,14 @@ const Messages = () => {
                       {user.name}
                     </h3>
 
-                    <p>
-                      {user.email}
-                    </p>
-
                   </div>
 
                 </div>
 
                 <button
                   onClick={() =>
-                    setSelectedUser(
-                      user
+                    navigate(
+                      `/chat/${user._id}`
                     )
                   }
                 >
@@ -157,42 +121,6 @@ const Messages = () => {
         </div>
 
       </div>
-
-      {/* CHAT POPUP */}
-
-      {selectedUser && (
-
-        <div className="chat-popup">
-
-          <div className="chat-header">
-
-            <h3>
-              {selectedUser.name}
-            </h3>
-
-            <button
-              className="close-chat"
-              onClick={() =>
-                setSelectedUser(null)
-              }
-            >
-              ✕
-            </button>
-
-          </div>
-
-          <ChatBox
-            currentUser={
-              currentUser
-            }
-            selectedUser={
-              selectedUser
-            }
-          />
-
-        </div>
-
-      )}
 
     </div>
   );
