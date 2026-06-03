@@ -2,155 +2,160 @@ import { useEffect, useState } from "react";
 
 import API from "../../api/axios";
 
-import MainLayout from "../../layouts/MainLayout";
-
-import FriendRequest from "../../components/FriendRequest/FriendRequest";
-
 import "./FriendRequest.css";
 
-const Friends = () => {
+const FriendRequest = () => {
 
-  const [users, setUsers] =
+  const [requests, setRequests] =
     useState([]);
 
-  const [sentRequests, setSentRequests] =
-    useState([]);
+  const [loading, setLoading] =
+    useState(true);
 
   // =========================
-  // GET ALL USERS
+  // GET FRIEND REQUESTS
   // =========================
-  const fetchUsers = async () => {
+  const fetchRequests = async () => {
 
     try {
 
-      const { data } =
-        await API.get(
-          "/friends/users"
-        );
-
-      setUsers(data.users);
-
-    } catch (error) {
-
-      console.log(error);
-    }
-  };
-
-  // =========================
-  // SEND REQUEST
-  // =========================
-  const sendRequest = async (
-    userId
-  ) => {
-
-    try {
-
-      await API.post(
-        `/friends/send/${userId}`
+      const { data } = await API.get(
+        "/friends/requests"
       );
 
-      setSentRequests(
-        (prev) => [
-          ...prev,
-          userId
-        ]
+      console.log(
+        "REQUEST DATA:",
+        data
+      );
+
+      setRequests(
+        data.requests || []
       );
 
     } catch (error) {
 
-      console.log(error);
+      console.log(
+        "REQUEST ERROR:",
+        error.response?.data || error
+      );
+
+    } finally {
+
+      setLoading(false);
     }
   };
 
+  // =========================
+  // ACCEPT REQUEST
+  // =========================
+  const acceptRequest = async (id) => {
+
+    try {
+
+      await API.put(
+        `/friends/accept/${id}`
+      );
+
+      setRequests((prev) =>
+        prev.filter(
+          (request) =>
+            request._id !== id
+        )
+      );
+
+    } catch (error) {
+
+      console.log(
+        "ACCEPT ERROR:",
+        error.response?.data || error
+      );
+    }
+  };
+
+  // =========================
+  // LOAD REQUESTS
+  // =========================
   useEffect(() => {
 
-    fetchUsers();
+    fetchRequests();
 
   }, []);
 
+  if (loading) {
+
+    return (
+      <div className="friend-loading">
+        Loading...
+      </div>
+    );
+  }
+
   return (
 
-    <MainLayout>
+    <div className="friend-request-container">
 
-      <div className="friends-page">
+      <h2>
+        Friend Requests
+      </h2>
 
-        {/* FRIEND REQUESTS */}
+      {requests.length === 0 ? (
 
-        <FriendRequest />
+        <div className="no-requests">
 
-        {/* ALL USERS */}
-
-        <div className="all-users">
-
-          <h2>
-            All Users
-          </h2>
-
-          {users.map((user) => (
-
-            <div
-              className="user-card"
-              key={user._id}
-            >
-
-              <div className="user-info">
-
-                <img
-                  src={
-                    user.profilePic ||
-                    "https://via.placeholder.com/50"
-                  }
-                  alt="profile"
-                />
-
-                <div>
-
-                  <h4>
-                    {user.name}
-                  </h4>
-
-                  <p>
-                    {user.email}
-                  </p>
-
-                </div>
-
-              </div>
-
-              {sentRequests.includes(
-                user._id
-              ) ? (
-
-                <button
-                  className="sent-btn"
-                >
-                  Request Sent
-                </button>
-
-              ) : (
-
-                <button
-                  onClick={() =>
-                    sendRequest(
-                      user._id
-                    )
-                  }
-                >
-                  Add Friend
-                </button>
-
-              )}
-
-            </div>
-
-          ))}
+          No Friend Requests
 
         </div>
 
-      </div>
+      ) : (
 
-    </MainLayout>
+        requests.map((request) => (
+
+          <div
+            className="friend-card"
+            key={request._id}
+          >
+
+            <div className="friend-info">
+
+              <img
+                src={
+                  request.sender?.profilePic ||
+                  "https://via.placeholder.com/50"
+                }
+                alt="profile"
+              />
+
+              <div>
+
+                <h4>
+                  {request.sender?.name}
+                </h4>
+
+                <p>
+                  Sent you a friend request
+                </p>
+
+              </div>
+
+            </div>
+
+            <button
+              onClick={() =>
+                acceptRequest(
+                  request._id
+                )
+              }
+            >
+              Accept
+            </button>
+
+          </div>
+
+        ))
+      )}
+
+    </div>
   );
 };
 
-export default Friends;
+export default FriendRequest;
