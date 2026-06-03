@@ -48,28 +48,27 @@ const Messages = () => {
 
 
   // =========================
-  // GET ALL USERS
-  // =========================
-  const fetchUsers =
-    async () => {
+// GET FRIENDS ONLY
+// =========================
+const fetchUsers =
+  async () => {
 
-      try {
+    try {
 
-        const { data } =
-          await API.get(
-            "/friends/users"
-          );
-
-        setUsers(
-          data.users
+      const { data } =
+        await API.get(
+          "/friends/my-friends"
         );
 
-      } catch (error) {
+      setUsers(
+        data.friends
+      );
 
-        console.log(error);
-      }
-    };
+    } catch (error) {
 
+      console.log(error);
+    }
+  };
 
   // =========================
   // LOAD DATA
