@@ -12,7 +12,6 @@ const FriendRequest = () => {
   const [loading, setLoading] =
     useState(true);
 
-
   // =========================
   // GET FRIEND REQUESTS
   // =========================
@@ -24,18 +23,25 @@ const FriendRequest = () => {
         "/friends/requests"
       );
 
+      console.log(
+        "REQUEST DATA:",
+        data
+      );
+
       setRequests(data.requests);
 
     } catch (error) {
 
-      console.log(error);
+      console.log(
+        "REQUEST ERROR:",
+        error.response?.data || error
+      );
 
     } finally {
 
       setLoading(false);
     }
   };
-
 
   // =========================
   // ACCEPT REQUEST
@@ -57,25 +63,21 @@ const FriendRequest = () => {
 
     } catch (error) {
 
-      console.log(error);
+      console.log(
+        "ACCEPT ERROR:",
+        error.response?.data || error
+      );
     }
   };
-
 
   // =========================
   // LOAD REQUESTS
   // =========================
   useEffect(() => {
 
-    const loadRequests = async () => {
-
-      await fetchRequests();
-    };
-
-    loadRequests();
+    fetchRequests();
 
   }, []);
-
 
   if (loading) {
 
@@ -86,7 +88,6 @@ const FriendRequest = () => {
     );
   }
 
-
   return (
 
     <div className="friend-request-container">
@@ -95,6 +96,10 @@ const FriendRequest = () => {
         Friend Requests
       </h2>
 
+      <p>
+        Total Requests:
+        {requests.length}
+      </p>
 
       {requests.length === 0 ? (
 
@@ -117,7 +122,7 @@ const FriendRequest = () => {
 
               <img
                 src={
-                  request.sender.profilePic ||
+                  request.sender?.profilePic ||
                   "https://via.placeholder.com/50"
                 }
                 alt="profile"
@@ -126,7 +131,7 @@ const FriendRequest = () => {
               <div>
 
                 <h4>
-                  {request.sender.name}
+                  {request.sender?.name}
                 </h4>
 
                 <p>
@@ -136,7 +141,6 @@ const FriendRequest = () => {
               </div>
 
             </div>
-
 
             <button
               onClick={() =>
