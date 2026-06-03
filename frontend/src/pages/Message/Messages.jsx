@@ -22,7 +22,6 @@ const Messages = () => {
   const [currentUser, setCurrentUser] =
     useState(null);
 
-
   // =========================
   // GET CURRENT USER
   // =========================
@@ -46,29 +45,28 @@ const Messages = () => {
       }
     };
 
-
   // =========================
-// GET FRIENDS ONLY
-// =========================
-const fetchUsers =
-  async () => {
+  // GET FRIENDS ONLY
+  // =========================
+  const fetchUsers =
+    async () => {
 
-    try {
+      try {
 
-      const { data } =
-        await API.get(
-          "/friends/my-friends"
+        const { data } =
+          await API.get(
+            "/friends/my-friends"
+          );
+
+        setUsers(
+          data.friends
         );
 
-      setUsers(
-        data.friends
-      );
+      } catch (error) {
 
-    } catch (error) {
-
-      console.log(error);
-    }
-  };
+        console.log(error);
+      }
+    };
 
   // =========================
   // LOAD DATA
@@ -87,23 +85,19 @@ const fetchUsers =
 
   }, []);
 
-
   return (
 
     <div>
 
       <Navbar />
 
-
       <div className="messages-page">
 
-        {/* USER LIST */}
         <div className="messages-sidebar">
 
           <h2>
-            Users
+            Friends
           </h2>
-
 
           {users.length > 0 ? (
 
@@ -124,7 +118,6 @@ const fetchUsers =
                     alt="profile"
                   />
 
-
                   <div>
 
                     <h3>
@@ -138,7 +131,6 @@ const fetchUsers =
                   </div>
 
                 </div>
-
 
                 <button
                   onClick={() =>
@@ -157,41 +149,50 @@ const fetchUsers =
           ) : (
 
             <p>
-              No Users Found
+              No Friends Found
             </p>
 
           )}
 
         </div>
 
+      </div>
 
-        {/* CHAT BOX */}
-        <div className="messages-chatbox">
+      {/* CHAT POPUP */}
 
-          {selectedUser ? (
+      {selectedUser && (
 
-            <ChatBox
-              currentUser={
-                currentUser
+        <div className="chat-popup">
+
+          <div className="chat-header">
+
+            <h3>
+              {selectedUser.name}
+            </h3>
+
+            <button
+              className="close-chat"
+              onClick={() =>
+                setSelectedUser(null)
               }
-              selectedUser={
-                selectedUser
-              }
-            />
+            >
+              ✕
+            </button>
 
-          ) : (
+          </div>
 
-            <div className="no-chat">
-
-              Select a user to chat
-
-            </div>
-
-          )}
+          <ChatBox
+            currentUser={
+              currentUser
+            }
+            selectedUser={
+              selectedUser
+            }
+          />
 
         </div>
 
-      </div>
+      )}
 
     </div>
   );
