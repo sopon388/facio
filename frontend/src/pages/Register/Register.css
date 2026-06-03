@@ -1,37 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f0f2f5;
+  font-family: Arial, sans-serif;
+}
+
 .register-container {
   width: 100%;
   max-width: 420px;
 
-  margin: 50px auto;
-  padding: 35px;
+  margin: 40px auto;
+  padding: 35px 25px;
 
-  background: #ffffff;
+  background: #fff;
 
   border-radius: 20px;
 
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.1);
+    0 8px 25px rgba(0, 0, 0, 0.1);
 
   text-align: center;
 }
 
 .register-container h2 {
+  font-size: 32px;
+  color: #1877f2;
+
   margin-bottom: 25px;
 
-  font-size: 30px;
   font-weight: 700;
-
-  color: #1877f2;
 }
 
 .register-container form {
   display: flex;
   flex-direction: column;
-
   gap: 15px;
 }
 
 .register-container input {
+  width: 100%;
+
   padding: 14px 16px;
 
   border: 1px solid #ddd;
@@ -52,6 +64,8 @@
 }
 
 .register-container button {
+  width: 100%;
+
   padding: 14px;
 
   border: none;
@@ -76,52 +90,31 @@
 
 .register-container p {
   margin-top: 15px;
-
-  font-size: 14px;
-  color: #333;
-}
-
-body {
-  margin: 0;
-
-  min-height: 100vh;
-
-  background:
-    linear-gradient(
-      135deg,
-      #1877f2,
-      #42a5f5
-    );
-
-  font-family:
-    Arial,
-    sans-serif;
-}
-
-@media (max-width: 500px) {
-
-  .register-container {
-
-    margin: 20px;
-    padding: 25px;
-  }
-
-  .register-container h2 {
-    font-size: 26px;
-  }
-  .login-link {
-  margin-top: 15px;
-  text-align: center;
   color: #555;
+}
+
+.login-link {
+  margin-top: 20px;
 }
 
 .login-link a {
   color: #1877f2;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .login-link a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 500px) {
+
+  .register-container {
+    margin: 15px;
+    padding: 25px 20px;
+  }
+
+  .register-container h2 {
+    font-size: 28px;
+  }
 }
