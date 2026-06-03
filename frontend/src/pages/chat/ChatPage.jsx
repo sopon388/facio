@@ -9,6 +9,7 @@ from "../../api/axios";
 
 import Navbar
 from "../../components/Navbar/Navbar";
+import socket from "../../socket";
 
 import ChatBox
 from "../../components/ChatBox/ChatBox";
@@ -26,6 +27,33 @@ const ChatPage = () => {
   const [currentUser,
     setCurrentUser] =
       useState(null);
+
+
+
+
+
+useEffect(() => {
+
+  if (currentUser?._id) {
+
+    socket.emit(
+      "join",
+      currentUser._id
+    );
+  }
+
+}, [currentUser]);
+
+
+
+
+
+
+
+
+
+
+
 
   useEffect(() => {
 

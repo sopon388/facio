@@ -7,6 +7,8 @@ import API from "../../api/axios";
 
 import "./ChatBox.css";
 
+import socket from "../../socket";
+
 const ChatBox = ({
   currentUser,
   selectedUser
@@ -17,7 +19,6 @@ const ChatBox = ({
 
   const [text, setText] =
     useState("");
-
 
   // =========================
   // FETCH MESSAGES
@@ -42,7 +43,6 @@ const ChatBox = ({
       }
     };
 
-
   // =========================
   // SEND MESSAGE
   // =========================
@@ -63,13 +63,24 @@ const ChatBox = ({
             }
           );
 
-
         setMessages((prev) => [
 
           ...prev,
 
           data.message
+
         ]);
+
+        // SOCKET SEND
+        socket.emit(
+          "sendMessage",
+          {
+            ...data.message,
+
+            receiverId:
+              selectedUser._id
+          }
+        );
 
         setText("");
 
@@ -79,6 +90,35 @@ const ChatBox = ({
       }
     };
 
+  // =========================
+  // RECEIVE REALTIME MESSAGE
+  // =========================
+  useEffect(() => {
+
+    socket.on(
+      "receiveMessage",
+      (message) => {
+
+        setMessages(
+          (prev) => [
+
+            ...prev,
+
+            message
+
+          ]
+        );
+      }
+    );
+
+    return () => {
+
+      socket.off(
+        "receiveMessage"
+      );
+    };
+
+  }, []);
 
   // =========================
   // LOAD CHAT
@@ -97,7 +137,6 @@ const ChatBox = ({
     loadMessages();
 
   }, [selectedUser]);
-
 
   return (
 
@@ -120,29 +159,28 @@ const ChatBox = ({
 
       </div>
 
-
       {/* MESSAGES */}
       <div className="chatbox-messages">
 
-        {messages.map((msg) => (
+        {messages.map((msg, index) => (
 
           <div
-  key={msg._id}
-  className={
-    String(msg.sender) ===
-    String(currentUser._id)
+            key={msg._id || index}
+            className={
+              String(msg.sender) ===
+              String(currentUser._id)
 
-      ? "my-message"
+                ? "my-message"
 
-      : "other-message"
-  }
->
-  {msg.text}
-</div>
+                : "other-message"
+            }
+          >
+            {msg.text}
+          </div>
+
         ))}
 
       </div>
-
 
       {/* INPUT */}
       <div className="chatbox-input">
@@ -156,8 +194,11 @@ const ChatBox = ({
               e.target.value
             )
           }
+          onKeyDown={(e) =>
+            e.key === "Enter" &&
+            handleSendMessage()
+          }
         />
-
 
         <button
           onClick={
