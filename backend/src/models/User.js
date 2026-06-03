@@ -40,22 +40,37 @@ const userSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
-// 🔐 Hash password before save
-userSchema.pre("save", async function (next) {
+// ==============================
+// HASH PASSWORD BEFORE SAVE
+// ==============================
+userSchema.pre("save", async function () {
   if (!this.isModified("password")) {
-    return next();
+    return;
   }
 
-  this.password = await bcrypt.hash(this.password, 10);
-  next();
+  this.password = await bcrypt.hash(
+    this.password,
+    10
+  );
 });
 
-// 🔑 Match password
-userSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
-};
+// ==============================
+// MATCH PASSWORD
+// ==============================
+userSchema.methods.matchPassword =
+  async function (enteredPassword) {
+    return await bcrypt.compare(
+      enteredPassword,
+      this.password
+    );
+  };
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model(
+  "User",
+  userSchema
+);
