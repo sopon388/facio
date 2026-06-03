@@ -12,7 +12,7 @@ const {
 const protect = require("../middleware/authMiddleware");
 
 const upload =
-  require("../middleware/upload");
+  require("../middleware/uploadMiddleware");
 
 // Register
 router.post("/register", register);
