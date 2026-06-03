@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 
 import { AuthContext } from "../../context/AuthContext";
 
 import MainLayout from "../../layouts/MainLayout";
+
+import API from "../../api/axios";
 
 import "./Profile.css";
 
@@ -10,6 +12,92 @@ const Profile = () => {
 
   const { user } =
     useContext(AuthContext);
+
+  const profileInputRef =
+    useRef(null);
+
+  const coverInputRef =
+    useRef(null);
+
+  // =========================
+  // PROFILE PIC UPLOAD
+  // =========================
+  const handleProfileUpload =
+    async (e) => {
+
+      const file =
+        e.target.files[0];
+
+      if (!file) return;
+
+      try {
+
+        const formData =
+          new FormData();
+
+        formData.append(
+          "profilePic",
+          file
+        );
+
+        await API.put(
+          "/auth/update-profile",
+          formData,
+          {
+            headers: {
+              "Content-Type":
+                "multipart/form-data"
+            }
+          }
+        );
+
+        window.location.reload();
+
+      } catch (error) {
+
+        console.log(error);
+      }
+    };
+
+  // =========================
+  // COVER PIC UPLOAD
+  // =========================
+  const handleCoverUpload =
+    async (e) => {
+
+      const file =
+        e.target.files[0];
+
+      if (!file) return;
+
+      try {
+
+        const formData =
+          new FormData();
+
+        formData.append(
+          "coverPic",
+          file
+        );
+
+        await API.put(
+          "/auth/update-profile",
+          formData,
+          {
+            headers: {
+              "Content-Type":
+                "multipart/form-data"
+            }
+          }
+        );
+
+        window.location.reload();
+
+      } catch (error) {
+
+        console.log(error);
+      }
+    };
 
   return (
 
@@ -95,15 +183,49 @@ const Profile = () => {
 
           <div className="profile-buttons">
 
-            <button>
+            <button
+              onClick={() =>
+                profileInputRef.current.click()
+              }
+            >
               Change Profile Pic
             </button>
 
-            <button>
+            <button
+              onClick={() =>
+                coverInputRef.current.click()
+              }
+            >
               Change Cover Pic
             </button>
 
           </div>
+
+          {/* HIDDEN INPUTS */}
+
+          <input
+            type="file"
+            accept="image/*"
+            ref={profileInputRef}
+            onChange={
+              handleProfileUpload
+            }
+            style={{
+              display: "none"
+            }}
+          />
+
+          <input
+            type="file"
+            accept="image/*"
+            ref={coverInputRef}
+            onChange={
+              handleCoverUpload
+            }
+            style={{
+              display: "none"
+            }}
+          />
 
         </div>
 

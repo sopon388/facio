@@ -163,3 +163,74 @@ exports.getProfile = async (req, res) => {
     });
   }
 };
+// ==============================
+// UPDATE PROFILE & COVER PHOTO
+// ==============================
+exports.updateProfile = async (
+  req,
+  res
+) => {
+
+  try {
+
+    const user =
+      await User.findById(
+        req.user._id
+      );
+
+    if (!user) {
+
+      return res.status(404).json({
+        success: false,
+        message: "User not found"
+      });
+    }
+
+    // PROFILE PIC
+    if (
+      req.files &&
+      req.files.profilePic
+    ) {
+
+      user.profilePic =
+        req.files.profilePic[0].path;
+    }
+
+    // COVER PIC
+    if (
+      req.files &&
+      req.files.coverPic
+    ) {
+
+      user.coverPic =
+        req.files.coverPic[0].path;
+    }
+
+    // BIO
+    if (req.body.bio) {
+
+      user.bio =
+        req.body.bio;
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      user
+    });
+
+  } catch (error) {
+
+    console.log(
+      "UPDATE PROFILE ERROR:"
+    );
+
+    console.log(error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+};
