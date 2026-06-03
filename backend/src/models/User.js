@@ -28,6 +28,13 @@ const userSchema = new mongoose.Schema(
       default: "https://i.ibb.co/4pDNDk1/avatar.png",
     },
 
+    // NEW FEATURE
+    coverPic: {
+      type: String,
+      default:
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200",
+    },
+
     bio: {
       type: String,
       default: "",
