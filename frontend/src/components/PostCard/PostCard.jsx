@@ -3,7 +3,9 @@ import "./PostCard.css";
 const PostCard = ({ post }) => {
   return (
     <div className="post-card">
-      <h3>{post.user.name}</h3>
+      <h3>
+        {post.user?.name || "Unknown User"}
+      </h3>
 
       <p>{post.text}</p>
 
@@ -16,7 +18,7 @@ const PostCard = ({ post }) => {
 
       <div className="post-actions">
         <button>
-          Like ({post.likes.length})
+          Like ({post.likes?.length || 0})
         </button>
       </div>
     </div>
