@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {Link ,useNavigate } from "react-router-dom";
 import API from "../../api/axios";
-
 const Register = () => {
   const navigate = useNavigate();
 
@@ -86,9 +85,19 @@ const Register = () => {
         </button>
       </form>
 
-      {message && (
+
+
+     {message && (
         <p>{message}</p>
       )}
+
+      <p className="login-link">
+        Already have an account?{" "}
+        <Link to="/login">
+          Login
+        </Link>
+      </p>
+
     </div>
   );
 };
