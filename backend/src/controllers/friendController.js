@@ -218,20 +218,6 @@ const acceptFriendRequest =
 
 
 // =========================
-// EXPORTS
-// =========================
-module.exports = {
-
-  getAllUsers,
-
-  sendFriendRequest,
-
-  getFriendRequests,
-
-  acceptFriendRequest,
-  getFriends
-};
-// =========================
 // GET FRIENDS
 // =========================
 const getFriends = async (
@@ -265,4 +251,19 @@ const getFriends = async (
         error.message
     });
   }
+};
+
+// =========================
+// EXPORTS
+// =========================
+module.exports = {
+
+  getAllUsers,
+
+  sendFriendRequest,
+
+  getFriendRequests,
+
+  acceptFriendRequest,
+  getFriends
 };
