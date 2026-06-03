@@ -65,20 +65,41 @@ const PostCard = ({ post }) => {
     };
 
   return (
+
     <div className="post-card">
 
-      <h3>
-        {post.user?.name ||
-          "Unknown User"}
-      </h3>
+      <div className="post-user">
+
+        <img
+          src={
+            post.user?.profilePic ||
+            "https://via.placeholder.com/50"
+          }
+          alt="profile"
+          className="post-profile-pic"
+        />
+
+        <div>
+
+          <h3>
+            {post.user?.name ||
+              "Unknown User"}
+          </h3>
+
+        </div>
+
+      </div>
 
       <p>{post.text}</p>
 
       {post.image && (
+
         <img
           src={post.image}
           alt="post"
+          className="post-image"
         />
+
       )}
 
       <div className="post-actions">
@@ -118,11 +139,14 @@ const PostCard = ({ post }) => {
           (c, index) => (
 
             <p key={index}>
+
               <strong>
                 {c.user?.name ||
                   "User"}
               </strong>
+
               : {c.text}
+
             </p>
 
           )
@@ -131,6 +155,7 @@ const PostCard = ({ post }) => {
       </div>
 
     </div>
+
   );
 };
 
