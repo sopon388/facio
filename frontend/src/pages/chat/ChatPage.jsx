@@ -9,7 +9,8 @@ from "../../api/axios";
 
 import Navbar
 from "../../components/Navbar/Navbar";
-import socket from "../../socket";
+
+import socket from "../../socket/socket";
 
 import ChatBox
 from "../../components/ChatBox/ChatBox";
