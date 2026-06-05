@@ -1,6 +1,16 @@
 .layout {
   min-height: 100vh;
-  background: #f5f7fb;
+
+  background:
+    linear-gradient(
+      135deg,
+      #050816,
+      #0f172a,
+      #111827,
+      #1e1b4b
+    );
+
+  color: #ffffff;
 }
 
 
@@ -11,7 +21,9 @@
 .layout-content {
   width: 100%;
   max-width: 1200px;
+
   margin: 0 auto;
+
   padding: 25px 15px;
 }
 

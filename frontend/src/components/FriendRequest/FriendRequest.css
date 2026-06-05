@@ -11,6 +11,11 @@
 
 .all-users h2 {
   margin-bottom: 15px;
+
+  color: white;
+
+  text-shadow:
+    0 0 10px rgba(139,92,246,0.4);
 }
 
 .user-card {
@@ -20,14 +25,22 @@
 
   padding: 12px;
 
-  background: white;
+  background:
+    linear-gradient(
+      135deg,
+      #111827,
+      #1e1b4b
+    );
 
   border-radius: 12px;
 
   margin-bottom: 10px;
 
+  border:
+    1px solid rgba(99,102,241,0.25);
+
   box-shadow:
-    0 2px 10px rgba(0,0,0,0.08);
+    0 0 15px rgba(99,102,241,0.12);
 }
 
 .user-info {
@@ -42,22 +55,36 @@
 
   border-radius: 50%;
   object-fit: cover;
+
+  border: 2px solid #8b5cf6;
+
+  box-shadow:
+    0 0 10px rgba(139,92,246,0.4);
 }
 
 .user-info h4 {
   margin: 0;
+
+  color: white;
 }
 
 .user-info p {
   margin: 0;
-  color: gray;
+
+  color: #cbd5e1;
+
   font-size: 13px;
 }
 
 .user-card button {
   border: none;
 
-  background: #2563eb;
+  background:
+    linear-gradient(
+      135deg,
+      #6366f1,
+      #8b5cf6
+    );
 
   color: white;
 
@@ -66,8 +93,26 @@
   border-radius: 8px;
 
   cursor: pointer;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.user-card button:hover {
+
+  box-shadow:
+    0 0 15px rgba(139,92,246,0.5);
 }
 
 .sent-btn {
-  background: gray !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #475569,
+      #64748b
+    ) !important;
+
+  color: white;
 }

@@ -10,13 +10,23 @@
   justify-content:space-between;
   align-items:center;
 
-  background:white;
+  background:
+    linear-gradient(
+      135deg,
+      #111827,
+      #1e1b4b
+    );
 
   padding:12px;
 
   margin-bottom:10px;
 
   border-radius:12px;
+
+  border:1px solid rgba(99,102,241,0.25);
+
+  box-shadow:
+    0 0 15px rgba(99,102,241,0.12);
 }
 
 .friend-info{
@@ -34,13 +44,38 @@
 
   border-radius:50%;
   object-fit:cover;
+
+  border:2px solid #8b5cf6;
+
+  box-shadow:
+    0 0 12px rgba(139,92,246,0.4);
+}
+
+.friend-info h3{
+
+  color:white;
+
+  margin-bottom:4px;
+}
+
+.friend-info p{
+
+  color:#cbd5e1;
+
+  font-size:14px;
 }
 
 .friend-card button{
 
   border:none;
 
-  background:#1877f2;
+  background:
+    linear-gradient(
+      135deg,
+      #6366f1,
+      #8b5cf6
+    );
+
   color:white;
 
   padding:8px 14px;
@@ -48,4 +83,36 @@
   border-radius:8px;
 
   cursor:pointer;
+
+  font-weight:600;
+
+  transition:0.3s;
+}
+
+.friend-card button:hover{
+
+  box-shadow:
+    0 0 15px rgba(139,92,246,0.5);
+}
+
+.sent-btn{
+
+  background:
+    linear-gradient(
+      135deg,
+      #475569,
+      #64748b
+    ) !important;
+
+  color:white;
+}
+
+.all-users h2{
+
+  color:white;
+
+  margin-bottom:15px;
+
+  text-shadow:
+    0 0 10px rgba(99,102,241,0.4);
 }

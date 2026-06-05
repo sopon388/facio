@@ -2,8 +2,20 @@
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  background: #fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #111827,
+      #1e1b4b
+    );
+
   min-height: 100vh;
+
+  border: 1px solid rgba(99,102,241,0.2);
+
+  box-shadow:
+    0 0 25px rgba(99,102,241,0.15);
 }
 
 .cover-photo-container {
@@ -21,6 +33,8 @@
 .profile-card {
   text-align: center;
   padding: 20px;
+
+  color: white;
 }
 
 .profile-image {
@@ -30,13 +44,14 @@
   border-radius: 50%;
   object-fit: cover;
 
-  border: 5px solid white;
+  border: 5px solid #8b5cf6;
 
   margin-top: -70px;
 
-  background: white;
+  background: #111827;
 
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  box-shadow:
+    0 0 20px rgba(139,92,246,0.6);
 }
 
 .profile-card h2 {
@@ -44,15 +59,24 @@
   margin-bottom: 5px;
 
   font-size: 24px;
+
+  color: white;
+
+  text-shadow:
+    0 0 10px rgba(139,92,246,0.4);
 }
 
 .profile-card p {
   margin: 5px 0;
+
+  color: #cbd5e1;
 }
 
 .profile-bio {
-  color: #666;
+  color: #94a3b8;
+
   margin-top: 10px;
+
   padding: 0 10px;
 }
 
@@ -64,23 +88,33 @@
 
   padding: 15px 0;
 
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-top:
+    1px solid rgba(99,102,241,0.25);
+
+  border-bottom:
+    1px solid rgba(99,102,241,0.25);
 }
 
 .profile-stats h4 {
   margin: 0;
+
   font-size: 15px;
+
+  color: #a78bfa;
 }
 
 .profile-stats p {
   margin-top: 5px;
+
   font-weight: bold;
+
+  color: white;
 }
 
 .profile-buttons {
   display: flex;
   justify-content: center;
+
   gap: 10px;
 
   margin-top: 20px;
@@ -91,7 +125,13 @@
 .profile-buttons button {
   border: none;
 
-  background: #1877f2;
+  background:
+    linear-gradient(
+      135deg,
+      #6366f1,
+      #8b5cf6
+    );
+
   color: white;
 
   padding: 10px 16px;
@@ -107,7 +147,11 @@
 }
 
 .profile-buttons button:hover {
-  background: #166fe5;
+
+  box-shadow:
+    0 0 15px rgba(139,92,246,0.5);
+
+  transform: translateY(-2px);
 }
 
 @media (max-width: 500px) {

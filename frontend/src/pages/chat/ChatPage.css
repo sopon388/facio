@@ -1,25 +1,121 @@
+/* =========================
+   CHAT PAGE
+========================= */
+
 .chat-page {
-  max-width: 900px;
+  max-width: 950px;
 
-  margin: 20px auto;
+  margin: 25px auto;
 
-  padding: 0 15px;
+  padding: 0 20px;
+
+  animation: fadeIn 0.4s ease;
 }
 
+
+/* =========================
+   CHATBOX CONTAINER
+========================= */
+
 .chat-page .chatbox {
-  height: calc(100vh - 120px);
 
-  background: white;
+  height: calc(100vh - 140px);
 
-  border-radius: 18px;
+  background:
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #111827,
+      #1e1b4b
+    );
+
+  border-radius: 20px;
 
   overflow: hidden;
 
+  border: 1px solid rgba(99,102,241,0.25);
+
   box-shadow:
-    0 4px 20px rgba(0,0,0,0.08);
+    0 10px 30px rgba(0,0,0,0.30),
+    0 0 25px rgba(99,102,241,0.15);
+
+  transition: all 0.3s ease;
 }
 
-/* MOBILE */
+
+/* HOVER EFFECT */
+
+.chat-page .chatbox:hover {
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.35),
+    0 0 35px rgba(139,92,246,0.25);
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-chat {
+
+  height: 80vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  color: white;
+
+  font-size: 22px;
+
+  font-weight: 600;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeIn {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(10px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 992px) {
+
+  .chat-page {
+
+    max-width: 100%;
+
+    padding: 0 15px;
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 768px) {
 
@@ -27,16 +123,35 @@
 
     margin: 10px auto;
 
+    padding: 0 8px;
+  }
+
+  .chat-page .chatbox {
+
+    height: calc(100vh - 90px);
+
+    border-radius: 14px;
+  }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+  .chat-page {
+
     padding: 0;
   }
 
   .chat-page .chatbox {
 
-    height: calc(100vh - 70px);
+    height: calc(100vh - 75px);
 
     border-radius: 0;
-
-    box-shadow: none;
   }
 
 }
