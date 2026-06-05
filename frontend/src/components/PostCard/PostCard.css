@@ -25,6 +25,8 @@
     0 0 30px rgba(99,102,241,0.25);
 }
 
+/* USER */
+
 .post-user{
   display:flex;
   align-items:center;
@@ -56,11 +58,17 @@
   font-weight:700;
 }
 
+/* TEXT */
+
 .post-card p{
   color:#e5e7eb;
 
   line-height:1.6;
+
+  word-break: break-word;
 }
+
+/* IMAGE */
 
 .post-image{
   width:100%;
@@ -73,6 +81,8 @@
 
   box-shadow:
     0 8px 25px rgba(0,0,0,0.35);
+
+  object-fit:cover;
 }
 
 /* ACTIONS */
@@ -82,6 +92,7 @@
 }
 
 .post-actions button{
+
   background: linear-gradient(
     135deg,
     #6366f1,
@@ -99,6 +110,14 @@
   cursor:pointer;
 
   font-weight:600;
+
+  transition:0.3s;
+}
+
+.post-actions button:hover{
+
+  box-shadow:
+    0 0 15px rgba(139,92,246,0.5);
 }
 
 /* COMMENT BOX */
@@ -112,6 +131,7 @@
 }
 
 .comment-box input{
+
   flex:1;
 
   padding:12px;
@@ -123,9 +143,24 @@
   background:#1f2937;
 
   color:white;
+
+  outline:none;
+}
+
+.comment-box input::placeholder{
+  color:#94a3b8;
+}
+
+.comment-box input:focus{
+
+  border-color:#8b5cf6;
+
+  box-shadow:
+    0 0 10px rgba(139,92,246,0.3);
 }
 
 .comment-box button{
+
   background:#8b5cf6;
 
   color:white;
@@ -137,6 +172,14 @@
   border-radius:10px;
 
   cursor:pointer;
+
+  transition:0.3s;
+}
+
+.comment-box button:hover{
+
+  box-shadow:
+    0 0 15px rgba(139,92,246,0.5);
 }
 
 /* COMMENTS */
@@ -146,6 +189,7 @@
 }
 
 .comments p{
+
   background:#1f2937;
 
   padding:10px;
@@ -155,8 +199,82 @@
   margin-bottom:8px;
 
   color:#e5e7eb;
+
+  word-break: break-word;
 }
 
 .comments strong{
   color:#a78bfa;
+}
+
+/* TABLET */
+
+@media (max-width:768px){
+
+  .post-card{
+    padding:16px;
+    border-radius:16px;
+  }
+
+  .post-profile-pic{
+    width:52px;
+    height:52px;
+  }
+
+  .post-user h3{
+    font-size:18px;
+  }
+
+  .comment-box{
+    flex-direction:column;
+  }
+
+  .comment-box button{
+    width:100%;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width:480px){
+
+  .post-card{
+    padding:14px;
+    border-radius:14px;
+  }
+
+  .post-user{
+    gap:8px;
+  }
+
+  .post-profile-pic{
+    width:45px;
+    height:45px;
+  }
+
+  .post-user h3{
+    font-size:16px;
+  }
+
+  .post-card p{
+    font-size:14px;
+  }
+
+  .comment-box input{
+    font-size:14px;
+    padding:10px;
+  }
+
+  .comment-box button{
+    font-size:14px;
+    padding:10px;
+  }
+
+  .comments p{
+    font-size:14px;
+  }
+
+  .post-actions button{
+    width:100%;
+  }
 }
