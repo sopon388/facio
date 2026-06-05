@@ -18,6 +18,17 @@ const Navbar = () => {
 
     navigate("/login");
   };
+    <div className="navbar-logo">
+
+  <div className="logo-circle">
+    F
+  </div>
+
+  <span>
+    Facio
+  </span>
+
+</div>
 
 
   return (

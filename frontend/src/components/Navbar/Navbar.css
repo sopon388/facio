@@ -56,4 +56,21 @@
     padding: 8px 12px;
     font-size: 13px;
   }
+  .logo-circle {
+  width: 42px;
+  height: 42px;
+
+  background: #1877f2;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
 }
