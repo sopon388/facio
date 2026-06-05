@@ -6,7 +6,6 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-
   // =========================
   // LOGOUT
   // =========================
@@ -18,18 +17,6 @@ const Navbar = () => {
 
     navigate("/login");
   };
-    <div className="navbar-logo">
-
-  <div className="logo-circle">
-    F
-  </div>
-
-  <span>
-    Facio
-  </span>
-
-</div>
-
 
   return (
 
@@ -38,10 +25,15 @@ const Navbar = () => {
       {/* LOGO */}
       <div className="navbar-logo">
 
-        Facio
+        <div className="logo-circle">
+          F
+        </div>
+
+        <span>
+          Facio
+        </span>
 
       </div>
-
 
       {/* NAV LINKS */}
       <div className="navbar-links">

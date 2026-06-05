@@ -56,7 +56,7 @@
     padding: 8px 12px;
     font-size: 13px;
   }
-  .logo-circle {
+.logo-circle {
   width: 42px;
   height: 42px;
 
@@ -65,12 +65,22 @@
   border-radius: 50%;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   color: white;
   font-size: 24px;
   font-weight: bold;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 }
