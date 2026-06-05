@@ -26,11 +26,11 @@ const Navbar = () => {
       <div className="navbar-logo">
 
         <div className="logo-circle">
-          F
+          ⚡
         </div>
 
         <span>
-          Facio
+          Sopon SocioFAce
         </span>
 
       </div>
