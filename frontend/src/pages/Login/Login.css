@@ -13,7 +13,8 @@
 
 body{
 
-    overflow:hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     background:#050816;
 }
@@ -36,8 +37,6 @@ BACKGROUND
     justify-content:center;
 
     align-items:center;
-
-    overflow:hidden;
 
     background:
     linear-gradient(
