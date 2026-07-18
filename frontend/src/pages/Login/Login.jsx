@@ -86,76 +86,86 @@ const Login = () => {
 
   return (
 
-    <div className="login-page">
+    <>
 
-      <form
-        className="login-form"
-        onSubmit={handleSubmit}
-      >
+      {/* Animated Logo */}
+      <div className="logo-title">
+        <h1>Sopon SocioFace</h1>
+      </div>
 
-        <h2>
-          Login
-        </h2>
+      <div className="login-page">
 
-
-        {error && (
-
-          <div className="error-message">
-
-            {error}
-
-          </div>
-
-        )}
-
-
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-
-
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-
-
-        <button
-          type="submit"
-          disabled={loading}
+        <form
+          className="login-form"
+          onSubmit={handleSubmit}
         >
 
-          {loading
-            ? "Logging in..."
-            : "Login"}
-
-        </button>
+          <h2>
+            Login
+          </h2>
 
 
-        <p>
+          {error && (
 
-          Don't have an account?
+            <div className="error-message">
 
-          <Link to="/register">
+              {error}
 
-            Register
+            </div>
 
-          </Link>
+          )}
 
-        </p>
 
-      </form>
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
-    </div>
+
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+
+
+          <button
+            type="submit"
+            disabled={loading}
+          >
+
+            {loading
+              ? "Logging in..."
+              : "Login"}
+
+          </button>
+
+
+          <p>
+
+            Don't have an account?
+
+            <Link to="/register">
+
+              Register
+
+            </Link>
+
+          </p>
+
+        </form>
+
+      </div>
+
+    </>
+
   );
 };
 
