@@ -15,7 +15,8 @@ body{
 
     background:#050816;
 
-    overflow:hidden;
+     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
@@ -38,8 +39,6 @@ BACKGROUND
     justify-content:center;
 
     align-items:center;
-
-    overflow:hidden;
 
     background:
     linear-gradient(
@@ -154,7 +153,7 @@ FORM
 
     border-radius:28px;
 
-    overflow:hidden;
+  
 
     background:
 
