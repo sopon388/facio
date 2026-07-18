@@ -9,7 +9,7 @@ const FriendRequest = () => {
   const [requests, setRequests] =
     useState([]);
 
-  const [loading, setLoading] =
+  const [loading, setLoading] =cd
     useState(true);
 
   // =========================
