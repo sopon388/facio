@@ -1,607 +1,171 @@
-/*==================================================
-        FACIO REGISTER CSS - PART 1
-==================================================*/
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
+.register-container {
+  width: 100%;
+  min-height: 100vh;
 
-    background:#050816;
+  display: flex;
+  flex-direction: column;
 
-     overflow-x: hidden;
-    overflow-y: auto;
-}
+  justify-content: center;
+  align-items: center;
 
-
-/*=============================
-BACKGROUND
-=============================*/
-
-.register-container{
-
-    position:relative;
-
-    width:100%;
-
-    min-height:100vh;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:
+  background:
     linear-gradient(
-    135deg,
-    #020617,
-    #0f172a,
-    #111827,
-    #1e293b,
-    #020617);
+      135deg,
+      #0f172a,
+      #1e293b,
+      #2563eb
+    );
 
-    background-size:400% 400%;
-
-    animation:bgMove 15s ease infinite;
+  padding: 20px;
 }
 
+.register-container h2 {
+  color: white;
 
-/*=============================
-LEFT LIGHT
-=============================*/
+  font-size: 34px;
 
-.register-container::before{
+  margin-bottom: 35px;
 
-    content:"";
-
-    position:absolute;
-
-    width:450px;
-
-    height:450px;
-
-    border-radius:50%;
-
-    background:#2563eb;
-
-    filter:blur(150px);
-
-    top:-150px;
-
-    left:-120px;
-
-    opacity:.35;
-
-    animation:lightOne 10s ease infinite;
+  font-weight: 700;
 }
 
+.register-container form {
+  width: 100%;
+  max-width: 400px;
 
-/*=============================
-RIGHT LIGHT
-=============================*/
+  background: rgba(255,255,255,0.12);
 
-.register-container::after{
+  border: 1px solid rgba(255,255,255,0.2);
 
-    content:"";
+  border-radius: 30px;
 
-    position:absolute;
+  padding: 40px 30px;
 
-    width:520px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.3);
 
-    height:520px;
-
-    border-radius:50%;
-
-    background:#9333ea;
-
-    filter:blur(170px);
-
-    bottom:-170px;
-
-    right:-120px;
-
-    opacity:.30;
-
-    animation:lightTwo 12s ease infinite;
+  animation:
+    fadeIn 0.5s ease;
 }
 
+.register-container input {
+  width: 100%;
 
-/*=============================
-TITLE
-=============================*/
+  padding: 16px 18px;
 
-.register-container h2{
+  margin-bottom: 18px;
 
-    color:#fff;
+  border: none;
 
-    font-size:38px;
+  border-radius: 14px;
 
-    margin-bottom:30px;
+  outline: none;
 
-    z-index:5;
+  font-size: 16px;
 
-    letter-spacing:1px;
+  background:
+    rgba(255,255,255,0.15);
 
-    text-shadow:
+  color: white;
 
-    0 0 15px rgba(59,130,246,.4);
+  transition: 0.3s;
 }
 
-
-/*=============================
-FORM
-=============================*/
-
-.register-form{
-
-    position:relative;
-
-    z-index:5;
-
-    width:430px;
-
-    padding:45px;
-
-    border-radius:28px;
-
-  
-
-    background:
-
-    rgba(255,255,255,.06);
-
-    backdrop-filter:blur(20px);
-
-    border:1px solid
-    rgba(255,255,255,.12);
-
-    box-shadow:
-
-    0 20px 60px
-    rgba(0,0,0,.55);
-
-    animation:
-    fadeUp .9s ease;
+.register-container input::placeholder {
+  color: rgba(255,255,255,0.7);
 }
 
+.register-container input:focus {
+  background:
+    rgba(255,255,255,0.25);
 
-/*=============================
-GRADIENT BORDER
-=============================*/
-
-.register-form::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-2px;
-
-    background:
-
-    linear-gradient(
-
-    90deg,
-
-    #2563eb,
-
-    #06b6d4,
-
-    #9333ea,
-
-    #ec4899,
-
-    #2563eb);
-
-    background-size:500%;
-
-    animation:borderMove 7s linear infinite;
-
-    z-index:-2;
+  transform: scale(1.02);
 }
 
+.register-container button {
+  width: 100%;
 
-/*=============================
-INNER GLASS
-=============================*/
+  padding: 16px;
 
-.register-form::after{
+  border: none;
 
-    content:"";
+  border-radius: 14px;
 
-    position:absolute;
+  background: white;
 
-    inset:2px;
+  color: #2563eb;
 
-    border-radius:26px;
+  font-size: 17px;
 
-    background:
+  font-weight: 700;
 
-    rgba(15,23,42,.95);
+  cursor: pointer;
 
-    z-index:-1;
+  transition: 0.3s;
+
+  margin-top: 10px;
 }
 
+.register-container button:hover {
+  transform: translateY(-2px);
 
-/*=============================
-ANIMATION
-=============================*/
-
-@keyframes bgMove{
-
-0%{
-
-background-position:0% 50%;
-
+  background: #dbeafe;
 }
 
-50%{
+.register-container p {
+  margin-top: 18px;
 
-background-position:100% 50%;
+  text-align: center;
 
+  color: white;
+
+  font-size: 15px;
 }
 
-100%{
-
-background-position:0% 50%;
-
+.login-link {
+  margin-top: 20px;
 }
 
+.login-link a {
+  color: #bfdbfe;
+
+  text-decoration: none;
+
+  font-weight: 600;
 }
 
-
-@keyframes lightOne{
-
-0%{
-
-transform:
-translate(0,0)
-scale(1);
-
+.login-link a:hover {
+  text-decoration: underline;
 }
 
-50%{
+@keyframes fadeIn {
 
-transform:
-translate(80px,60px)
-scale(1.2);
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-100%{
+@media (max-width: 500px) {
 
-transform:
-translate(0,0)
-scale(1);
+  .register-container h2 {
+    font-size: 28px;
+  }
 
-}
+  .register-container form {
+    padding: 35px 22px;
 
-}
-
-
-@keyframes lightTwo{
-
-0%{
-
-transform:
-translate(0,0)
-scale(1);
-
-}
-
-50%{
-
-transform:
-translate(-90px,-70px)
-scale(1.15);
-
-}
-
-100%{
-
-transform:
-translate(0,0)
-scale(1);
-
-}
-
-}
-
-
-@keyframes borderMove{
-
-0%{
-
-background-position:0%;
-
-}
-
-100%{
-
-background-position:500%;
-
-}
-
-}
-
-
-@keyframes fadeUp{
-
-0%{
-
-opacity:0;
-
-transform:
-translateY(50px)
-scale(.9);
-
-}
-
-100%{
-
-opacity:1;
-
-transform:
-translateY(0)
-scale(1);
-
-}
-
-}
-/*==================================================
-        FACIO REGISTER CSS - PART 2
-==================================================*/
-
-
-/*=============================
-INPUT
-=============================*/
-
-.register-form input{
-
-    width:100%;
-
-    height:58px;
-
-    margin-bottom:22px;
-
-    padding:0 18px;
-
-    border:none;
-
-    outline:none;
-
-    border-radius:15px;
-
-    background:
-
-    rgba(255,255,255,.06);
-
-    color:#fff;
-
-    font-size:16px;
-
-    border:1px solid
-    rgba(255,255,255,.10);
-
-    transition:.4s;
-}
-
-
-.register-form input::placeholder{
-
-    color:#94a3b8;
-}
-
-
-.register-form input:hover{
-
-    border-color:#3b82f6;
-}
-
-
-.register-form input:focus{
-
-    border-color:#3b82f6;
-
-    background:
-
-    rgba(255,255,255,.10);
-
-    box-shadow:
-
-    0 0 10px rgba(59,130,246,.45),
-
-    0 0 25px rgba(59,130,246,.20);
-}
-
-
-/*=============================
-REGISTER BUTTON
-=============================*/
-
-.register-form button{
-
-    width:100%;
-
-    height:58px;
-
-    border:none;
-
-    border-radius:15px;
-
-    cursor:pointer;
-
-    overflow:hidden;
-
-    position:relative;
-
-    color:#fff;
-
-    font-size:18px;
-
-    font-weight:700;
-
-    background:
-
-    linear-gradient(
-    135deg,
-    #2563eb,
-    #7c3aed);
-
-    transition:.4s;
-}
-
-
-.register-form button::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:-120%;
-
-    width:60%;
-
-    height:100%;
-
-    background:
-
-    linear-gradient(
-
-    90deg,
-
-    transparent,
-
-    rgba(255,255,255,.45),
-
-    transparent);
-
-    transform:skewX(-25deg);
-
-    transition:.8s;
-}
-
-
-.register-form button:hover::before{
-
-    left:160%;
-}
-
-
-.register-form button:hover{
-
-    transform:
-
-    translateY(-4px);
-
-    box-shadow:
-
-    0 15px 40px rgba(37,99,235,.40),
-
-    0 0 30px rgba(124,58,237,.35);
-}
-
-
-.register-form button:active{
-
-    transform:scale(.98);
-}
-
-
-/*=============================
-SUCCESS / ERROR
-=============================*/
-
-.register-container p{
-
-    z-index:5;
-
-    color:#cbd5e1;
-
-    margin-top:18px;
-
-    font-size:15px;
-
-    text-align:center;
-}
-
-
-/*=============================
-LOGIN LINK
-=============================*/
-
-.login-link{
-
-    margin-top:24px !important;
-
-    color:#cbd5e1;
-}
-
-
-.login-link a{
-
-    color:#60a5fa;
-
-    font-weight:700;
-
-    margin-left:6px;
-
-    text-decoration:none;
-
-    transition:.3s;
-}
-
-
-.login-link a:hover{
-
-    color:#fff;
-
-    text-shadow:
-
-    0 0 12px #3b82f6,
-
-    0 0 25px #2563eb;
-}
-
-
-/*=============================
-RESPONSIVE
-=============================*/
-
-@media(max-width:500px){
-
-.register-form{
-
-    width:92%;
-
-    padding:30px 22px;
-}
-
-.register-container h2{
-
-    font-size:30px;
-}
-
-.register-form input{
-
-    height:54px;
-}
-
-.register-form button{
-
-    height:54px;
-}
-
+    border-radius: 24px;
+  }
 }

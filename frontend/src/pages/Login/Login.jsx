@@ -86,86 +86,76 @@ const Login = () => {
 
   return (
 
-    <>
+    <div className="login-page">
 
-      {/* Animated Logo */}
-      <div className="logo-title">
-        <h1>Sopon SocioFace</h1>
-      </div>
+      <form
+        className="login-form"
+        onSubmit={handleSubmit}
+      >
 
-      <div className="login-page">
+        <h2>
+          Login
+        </h2>
 
-        <form
-          className="login-form"
-          onSubmit={handleSubmit}
+
+        {error && (
+
+          <div className="error-message">
+
+            {error}
+
+          </div>
+
+        )}
+
+
+        <input
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+
+
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+
+
+        <button
+          type="submit"
+          disabled={loading}
         >
 
-          <h2>
-            Login
-          </h2>
+          {loading
+            ? "Logging in..."
+            : "Login"}
+
+        </button>
 
 
-          {error && (
+        <p>
 
-            <div className="error-message">
+          Don't have an account?
 
-              {error}
+          <Link to="/register">
 
-            </div>
+            Register
 
-          )}
+          </Link>
 
+        </p>
 
-          <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+      </form>
 
-
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-
-
-          <button
-            type="submit"
-            disabled={loading}
-          >
-
-            {loading
-              ? "Logging in..."
-              : "Login"}
-
-          </button>
-
-
-          <p>
-
-            Don't have an account?
-
-            <Link to="/register">
-
-              Register
-
-            </Link>
-
-          </p>
-
-        </form>
-
-      </div>
-
-    </>
-
+    </div>
   );
 };
 

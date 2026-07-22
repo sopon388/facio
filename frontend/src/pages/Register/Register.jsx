@@ -50,7 +50,7 @@ const Register = () => {
     <div className="register-container">
       <h2>Register</h2>
 
-      <form className="register-form" onSubmit={submitHandler}>
+      <form onSubmit={submitHandler}>
         <input
           type="text"
           placeholder="Name"
