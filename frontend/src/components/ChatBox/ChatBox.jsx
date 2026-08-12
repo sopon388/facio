@@ -1,6 +1,7 @@
 import {
   useEffect,
-  useState
+  useState,
+  useRef
 } from "react";
 
 import API from "../../api/axios";
@@ -19,6 +20,12 @@ const ChatBox = ({
 
   const [text, setText] =
     useState("");
+
+  // =========================
+  // AUTO SCROLL REF
+  // =========================
+  const messagesEndRef =
+    useRef(null);
 
   // =========================
   // FETCH MESSAGES
@@ -138,6 +145,17 @@ const ChatBox = ({
 
   }, [selectedUser]);
 
+  // =========================
+  // AUTO SCROLL TO NEW MESSAGE
+  // =========================
+  useEffect(() => {
+
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }, [messages]);
+
   return (
 
     <div className="chatbox">
@@ -179,6 +197,9 @@ const ChatBox = ({
           </div>
 
         ))}
+
+        {/* AUTO SCROLL TARGET */}
+        <div ref={messagesEndRef} />
 
       </div>
 

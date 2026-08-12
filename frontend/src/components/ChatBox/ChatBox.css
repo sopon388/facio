@@ -77,6 +77,9 @@
 
   background:
     #0f172a;
+
+  /* AUTO SCROLL */
+  scroll-behavior: smooth;
 }
 
 /* MY MESSAGE */
