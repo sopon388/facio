@@ -210,7 +210,7 @@
 /* SCROLLBAR */
 
 .chatbox-messages::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 .chatbox-messages::-webkit-scrollbar-thumb {
@@ -226,14 +226,14 @@
 @media (max-width: 768px) {
 
   .chatbox {
-    height: calc(100vh - 70px);
+    height: calc(90vh - 65px);
 
     border-radius: 0;
   }
 
   .my-message,
   .other-message {
-    max-width: 85%;
+    max-width: 70%;
   }
 
   .chatbox-header img {
