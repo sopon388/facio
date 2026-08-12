@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import MainLayout from "../../layouts/MainLayout";
 
@@ -19,7 +19,7 @@ const Friends = () => {
   // =========================
   // GET ALL USERS
   // =========================
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
 
     try {
 
@@ -34,7 +34,7 @@ const Friends = () => {
 
       console.log(error);
     }
-  };
+  }, []);
 
   // =========================
   // SEND FRIEND REQUEST
@@ -65,7 +65,7 @@ const Friends = () => {
 
     fetchUsers();
 
-  }, []);
+  }, [fetchUsers]);
 
   return (
 
