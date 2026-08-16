@@ -10,6 +10,53 @@ const sendMessage =
 
     try {
 
+      // =========================
+      // FILE INFORMATION
+      // =========================
+
+      let fileUrl = "";
+      let fileType = "";
+      let fileName = "";
+
+      if (req.file) {
+
+        fileUrl =
+          req.file.path;
+
+        fileName =
+          req.file.originalname;
+
+        // Image
+        if (
+          req.file.mimetype.startsWith("image/")
+        ) {
+
+          fileType = "image";
+
+        }
+
+        // Video
+        else if (
+          req.file.mimetype.startsWith("video/")
+        ) {
+
+          fileType = "video";
+
+        }
+
+        // Other files
+        else {
+
+          fileType = "file";
+
+        }
+      }
+
+
+      // =========================
+      // CREATE MESSAGE
+      // =========================
+
       const message =
         await Message.create({
 
@@ -20,9 +67,22 @@ const sendMessage =
             req.params.id,
 
           text:
-            req.body.text
+            req.body.text || "",
+
+          fileUrl:
+            fileUrl,
+
+          fileType:
+            fileType,
+
+          fileName:
+            fileName
         });
 
+
+      // =========================
+      // RESPONSE
+      // =========================
 
       res.status(201).json({
 
@@ -31,6 +91,7 @@ const sendMessage =
         message
       });
 
+
     } catch (error) {
 
       res.status(500).json({
@@ -38,6 +99,7 @@ const sendMessage =
         message:
           error.message
       });
+
     }
   };
 
@@ -71,8 +133,11 @@ const getMessages =
                 req.user._id
             }
           ]
+
         }).sort({
+
           createdAt: 1
+
         });
 
 
@@ -81,7 +146,9 @@ const getMessages =
         success: true,
 
         messages
+
       });
+
 
     } catch (error) {
 
@@ -89,7 +156,9 @@ const getMessages =
 
         message:
           error.message
+
       });
+
     }
   };
 
@@ -99,4 +168,5 @@ module.exports = {
   sendMessage,
 
   getMessages
+
 };

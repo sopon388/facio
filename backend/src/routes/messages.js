@@ -1,20 +1,15 @@
-const express =
-  require("express");
+const express = require("express");
 
-const router =
-  express.Router();
+const router = express.Router();
 
-const protect =
-  require(
-    "../middleware/authMiddleware"
-  );
+const protect = require("../middleware/authMiddleware");
+
+const upload = require("../middleware/uploadMiddleware");
 
 const {
   sendMessage,
   getMessages
-} = require(
-  "../controllers/messageController"
-);
+} = require("../controllers/messageController");
 
 
 // =========================
@@ -23,6 +18,7 @@ const {
 router.post(
   "/send/:id",
   protect,
+  upload.single("file"),
   sendMessage
 );
 
@@ -40,5 +36,4 @@ router.get(
 // =========================
 // EXPORT ROUTER
 // =========================
-module.exports =
-  router;
+module.exports = router;

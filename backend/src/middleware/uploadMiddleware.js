@@ -7,26 +7,59 @@ const {
 const cloudinary = require("../config/cloudinary");
 
 
-// Cloudinary Storage
+// =========================
+// CLOUDINARY STORAGE
+// =========================
 const storage = new CloudinaryStorage({
   cloudinary,
 
   params: async (req, file) => ({
     folder: "social-media",
 
-    allowed_formats: ["jpg", "jpeg", "png", "webp"],
+    resource_type: "auto",
 
-    public_id: Date.now() + "-" + file.originalname
+    allowed_formats: [
+      "jpg",
+      "jpeg",
+      "png",
+      "webp",
+      "gif",
+
+      "mp4",
+      "mov",
+      "avi",
+      "mkv",
+      "webm",
+
+      "pdf",
+      "doc",
+      "docx",
+      "xls",
+      "xlsx",
+      "ppt",
+      "pptx",
+      "txt",
+      "zip"
+    ],
+
+    public_id:
+      Date.now() +
+      "-" +
+      file.originalname
+        .replace(/\s+/g, "-")
+        .replace(/[^a-zA-Z0-9._-]/g, "")
   })
 });
 
 
-// Multer Upload
+// =========================
+// MULTER UPLOAD
+// =========================
 const upload = multer({
   storage,
 
   limits: {
-    fileSize: 5 * 1024 * 1024
+    fileSize: 50 * 1024 * 1024 // 50 MB
   }
 });
 
